@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const statusMessage = document.getElementById('statusMessage');
-  const serviceUrl = 'http://localhost:90/'; // Update this URL as needed
+  const serviceUrl = 'http://10.60.61.10:90/get_code'; // Update this URL as needed
 
   fetch(serviceUrl)
     .then(response => {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Status Monitor</title>
+</head>
+<body>
+  <div id="message">
+    <h1>Loading status...</h1>
+  </div>
+
+  <script>
+    // Change the URL if needed; here it assumes port 9090 on localhost.
+    fetch('http://10.60.61.10:96/get_code')
+      .then(response => {
+        let status = response.status;
+        let message = '';
+
+        if (status === 200) {
+          message = "hello world all is good";
+        } else if (status === 201) {
+          message = "hello world most is good";
+        } else if (status === 300) {
+          message = "hello world maybe pay for the site";
+        } else if (status === 500) {
+          message = "site files deleted due to non-payment";
+        } else {
+          message = "Unexpected status: " + status;
+        }
+        document.getElementById('message').innerHTML = "<h1>" + message + "</h1>";
+      })
+      .catch(error => {
+        document.getElementById('message').innerHTML = "<h1>Error fetching status</h1>";
+        console.error("Error fetching status:", error);
+      });
+  </script>
+</body>
+</html>
